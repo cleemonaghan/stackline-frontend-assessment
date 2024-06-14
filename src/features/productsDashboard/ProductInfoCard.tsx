@@ -11,11 +11,7 @@ import { Product } from "./productsSlice";
 
 const ProductInfoCard = ({ product }: { product?: Product }) => {
   if (!product) {
-    return (
-      <Box sx={{ height: "100%", width: "100%" }}>
-        <Skeleton height="600px" width="100%" />
-      </Box>
-    );
+    return <Skeleton variant="rectangular" height="100%" width="100%" />;
   }
 
   return (
@@ -39,7 +35,7 @@ const ProductInfoCard = ({ product }: { product?: Product }) => {
         <Typography gutterBottom variant="h5" component="div">
           {product.title}
         </Typography>
-        <Typography variant="body2" color="text.secondary">
+        <Typography variant="body2" component="div" color="text.secondary">
           {product.subtitle}
         </Typography>
         <Box
@@ -54,8 +50,13 @@ const ProductInfoCard = ({ product }: { product?: Product }) => {
             borderColor: "divider",
           }}
         >
-          {product.tags.map((tag) => (
-            <Chip variant="outlined" label={tag} sx={{ borderRadius: 2 }} />
+          {product.tags.map((tag, i) => (
+            <Chip
+              variant="outlined"
+              label={tag}
+              sx={{ borderRadius: 2 }}
+              key={`${tag}-${i}`}
+            />
           ))}
         </Box>
       </CardContent>

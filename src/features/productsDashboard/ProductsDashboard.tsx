@@ -5,6 +5,8 @@ import { ConnectedProps, connect, useDispatch } from "react-redux";
 import { RootState } from "../../app/store";
 import { useEffect } from "react";
 import { fetchProducts } from "./productsSlice";
+import ProductSalesGraph from "./ProductSalesGraph";
+import ProductSalesTable from "./ProductSalesTable";
 
 const ProductsDashboard = (props: PropsFromRedux) => {
   const dispatch = useDispatch();
@@ -18,7 +20,7 @@ const ProductsDashboard = (props: PropsFromRedux) => {
   return (
     <Box sx={{ height: "100%" }}>
       <Navbar />
-      <Grid container sx={{ height: "100dvh" }}>
+      <Grid container sx={{ height: "100dvh", padding: 4 }}>
         <Grid
           item
           xs={12}
@@ -26,10 +28,6 @@ const ProductsDashboard = (props: PropsFromRedux) => {
           lg={4}
           sx={{
             display: { xs: "none", md: "flex" },
-            borderRight: { sm: "none", md: "1px solid" },
-            borderColor: { sm: "none", md: "divider" },
-            px: 10,
-            gap: 4,
           }}
         >
           <ProductInfoCard product={selectedProduct} />
@@ -45,8 +43,8 @@ const ProductsDashboard = (props: PropsFromRedux) => {
             maxWidth: "100%",
             width: "100%",
             alignItems: "start",
-            pt: { xs: 2, sm: 4 },
-            px: { xs: 2, sm: 10 },
+            pt: { xs: 2, sm: 0 },
+            pl: { xs: 2, sm: 5 },
             gap: { xs: 4, md: 8 },
           }}
         >
@@ -64,12 +62,12 @@ const ProductsDashboard = (props: PropsFromRedux) => {
               flexDirection: "column",
               flexGrow: 1,
               width: "100%",
-              maxWidth: { sm: "100%", md: 600 },
-              maxHeight: "720px",
+              maxWidth: { sm: "100%" },
               gap: { xs: 5, md: "none" },
             }}
           >
-            Graph and Table
+            <ProductSalesGraph product={selectedProduct} />
+            <ProductSalesTable />
           </Box>
         </Grid>
       </Grid>

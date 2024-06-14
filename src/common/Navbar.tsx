@@ -12,7 +12,10 @@ const Navbar = () => (
         height: "48px",
       }}
     >
-      <Logo title="Stackline" style={{ height: 32, margin: 8 }} />
+      <Logo
+        title="Stackline"
+        style={{ height: 32, margin: 8, marginLeft: 32 }}
+      />
     </Box>
   </nav>
 );

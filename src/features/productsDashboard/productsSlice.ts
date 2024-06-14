@@ -39,7 +39,6 @@ export const productsSlice = createSlice({
   initialState,
   reducers: {
     fetchProducts: (state) => {
-      console.log("Fetcing projects");
       state.products = data as Product[];
     },
   },
