@@ -37,7 +37,7 @@ const ProductSalesGraph = ({ product }: { product?: Product }) => {
   });
 
   return (
-    <Card sx={{ padding: 4 }}>
+    <Card sx={{ paddingTop: 4, paddingLeft: 2 }}>
       <Typography variant="h6" component="div">
         Retail Sales
       </Typography>
@@ -63,6 +63,7 @@ const ProductSalesGraph = ({ product }: { product?: Product }) => {
             },
           },
         ]}
+        leftAxis={null}
         sx={{
           [`& .${lineElementClasses.root}`]: {
             strokeWidth: 2,

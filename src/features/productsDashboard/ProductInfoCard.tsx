@@ -15,11 +15,20 @@ const ProductInfoCard = ({ product }: { product?: Product }) => {
   }
 
   return (
-    <Card sx={{ padding: 4 }}>
+    <Card
+      sx={{
+        width: "100%",
+        padding: 4,
+        display: "flex",
+        flexDirection: "column",
+        justifyContent: "flex-start",
+        alignItems: "center",
+      }}
+    >
       <CardMedia
         sx={{
-          width: "auto",
-          height: "25%",
+          width: "300px",
+          height: "300px",
         }}
         image={product.image}
         title={product.title}

@@ -24,8 +24,8 @@ const ProductsDashboard = (props: PropsFromRedux) => {
         <Grid
           item
           xs={12}
-          sm={5}
-          lg={4}
+          sm={4}
+          lg={3}
           sx={{
             display: { xs: "none", md: "flex" },
           }}
@@ -35,8 +35,8 @@ const ProductsDashboard = (props: PropsFromRedux) => {
         <Grid
           item
           sm={12}
-          md={7}
-          lg={8}
+          md={8}
+          lg={9}
           sx={{
             display: "flex",
             flexDirection: "column",
@@ -44,7 +44,7 @@ const ProductsDashboard = (props: PropsFromRedux) => {
             width: "100%",
             alignItems: "start",
             pt: { xs: 2, sm: 0 },
-            pl: { xs: 2, sm: 5 },
+            pl: { sm: 5 },
             gap: { xs: 4, md: 8 },
           }}
         >
@@ -54,7 +54,7 @@ const ProductsDashboard = (props: PropsFromRedux) => {
               width: "100%",
             }}
           >
-            Product Info Mobile
+            <ProductInfoCard product={selectedProduct} />
           </Box>
           <Box
             sx={{
@@ -67,7 +67,7 @@ const ProductsDashboard = (props: PropsFromRedux) => {
             }}
           >
             <ProductSalesGraph product={selectedProduct} />
-            <ProductSalesTable />
+            <ProductSalesTable product={selectedProduct} />
           </Box>
         </Grid>
       </Grid>
