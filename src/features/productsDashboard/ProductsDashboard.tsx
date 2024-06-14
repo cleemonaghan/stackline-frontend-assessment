@@ -1,7 +1,20 @@
-import { Box, Card, CardContent, Container, Grid } from "@mui/material";
+import { Box, Grid } from "@mui/material";
 import Navbar from "../../common/Navbar";
+import ProductInfoCard from "./ProductInfoCard";
+import { ConnectedProps, connect, useDispatch } from "react-redux";
+import { RootState } from "../../app/store";
+import { useEffect } from "react";
+import { fetchProducts } from "./productsSlice";
 
-const ProductsDashboard = () => {
+const ProductsDashboard = (props: PropsFromRedux) => {
+  const dispatch = useDispatch();
+  useEffect(() => {
+    if (props.products.length === 0) {
+      dispatch(props.fetchProducts());
+    }
+  }, [dispatch]);
+  const selectedProduct = props.products.at(0);
+
   return (
     <Box sx={{ height: "100%" }}>
       <Navbar />
@@ -13,26 +26,13 @@ const ProductsDashboard = () => {
           lg={4}
           sx={{
             display: { xs: "none", md: "flex" },
-            flexDirection: "column",
             borderRight: { sm: "none", md: "1px solid" },
             borderColor: { sm: "none", md: "divider" },
-            alignItems: "start",
-            pt: 4,
             px: 10,
             gap: 4,
           }}
         >
-          <Box
-            sx={{
-              display: "flex",
-              flexDirection: "column",
-              flexGrow: 1,
-              width: "100%",
-              maxWidth: 500,
-            }}
-          >
-            Product Info
-          </Box>
+          <ProductInfoCard product={selectedProduct} />
         </Grid>
         <Grid
           item
@@ -77,4 +77,16 @@ const ProductsDashboard = () => {
   );
 };
 
-export default ProductsDashboard;
+const mapStateToProps = (state: RootState) => ({
+  products: state.products.products,
+});
+
+const mapDispatchToProps = {
+  fetchProducts: () => fetchProducts(),
+};
+
+const connector = connect(mapStateToProps, mapDispatchToProps);
+
+type PropsFromRedux = ConnectedProps<typeof connector>;
+
+export default connector(ProductsDashboard);
