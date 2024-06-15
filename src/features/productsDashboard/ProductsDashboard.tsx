@@ -10,10 +10,9 @@ import ProductSalesTable from "./ProductSalesTable";
 import { DisplayType } from "./const";
 
 const ProductsDashboard = (props: PropsFromRedux) => {
-  const dispatch = useDispatch();
   useEffect(() => {
     if (props.products.length === 0) {
-      dispatch(props.fetchProducts());
+      props.fetchProducts();
     }
   }, []);
   const selectedProduct = props.products.at(0);
@@ -90,9 +89,9 @@ const mapStateToProps = (state: RootState) => ({
   products: state.products.products,
 });
 
-const mapDispatchToProps = {
-  fetchProducts: () => fetchProducts(),
-};
+const mapDispatchToProps = (dispatch: any) => ({
+  fetchProducts: () => dispatch(fetchProducts()),
+});
 
 const connector = connect(mapStateToProps, mapDispatchToProps);
 

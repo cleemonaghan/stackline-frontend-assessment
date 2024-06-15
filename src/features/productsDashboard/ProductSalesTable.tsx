@@ -31,7 +31,7 @@ const columns: GridColDef[] = [
   },
 ];
 
-const ProductSalesGraph = ({
+const ProductSalesTable = ({
   product,
   displayType,
 }: {
@@ -79,4 +79,4 @@ const ProductSalesGraph = ({
   );
 };
 
-export default ProductSalesGraph;
+export default ProductSalesTable;

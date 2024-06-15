@@ -54,7 +54,14 @@ const ProductSalesGraph = ({
   setDisplayType: (newValue: DisplayType) => void;
 }) => {
   if (!product) {
-    return <Skeleton variant="rectangular" height={500} width="100%" />;
+    return (
+      <Skeleton
+        variant="rectangular"
+        height={500}
+        width="100%"
+        data-testid="product-sales-graph-skeleton"
+      />
+    );
   }
 
   const handleChange = (event: SelectChangeEvent) => {

@@ -39,11 +39,12 @@ export const productsSlice = createSlice({
   initialState,
   reducers: {
     fetchProducts: (state) => {
+      // Mocked out api call here
       state.products = data as Product[];
     },
   },
 });
 
 export const { fetchProducts } = productsSlice.actions;
-
+export const { reducer: productsReducer } = productsSlice;
 export default productsSlice.reducer;

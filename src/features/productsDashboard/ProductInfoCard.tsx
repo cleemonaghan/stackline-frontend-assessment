@@ -11,7 +11,14 @@ import { Product } from "./productsSlice";
 
 const ProductInfoCard = ({ product }: { product?: Product }) => {
   if (!product) {
-    return <Skeleton variant="rectangular" height="100%" width="100%" />;
+    return (
+      <Skeleton
+        variant="rectangular"
+        height="100%"
+        width="100%"
+        data-testid="product-info-card-skeleton"
+      />
+    );
   }
 
   return (
