@@ -18,7 +18,6 @@ const ProductInfoCard = ({ product }: { product?: Product }) => {
     <Card
       sx={{
         width: "100%",
-        padding: 4,
         display: "flex",
         flexDirection: "column",
         justifyContent: "flex-start",
@@ -27,6 +26,8 @@ const ProductInfoCard = ({ product }: { product?: Product }) => {
     >
       <CardMedia
         sx={{
+          mt: 4,
+          mx: 4,
           width: "300px",
           height: "300px",
         }}
@@ -35,24 +36,34 @@ const ProductInfoCard = ({ product }: { product?: Product }) => {
       />
       <CardContent
         sx={{
+          padding: 0,
+          width: "100%",
           display: "flex",
           flexDirection: "column",
           alignItems: "center",
           textAlign: "center",
         }}
       >
-        <Typography gutterBottom variant="h5" component="div">
-          {product.title}
-        </Typography>
-        <Typography variant="body2" component="div" color="text.secondary">
-          {product.subtitle}
-        </Typography>
+        <Box
+          sx={{
+            px: 4,
+          }}
+        >
+          <Typography gutterBottom variant="h5" component="div">
+            {product.title}
+          </Typography>
+          <Typography variant="body2" component="div" color="text.secondary">
+            {product.subtitle}
+          </Typography>
+        </Box>
+
         <Box
           sx={{
             display: "flex",
             flexWrap: "wrap",
-            justifyContent: "flex-start",
+            justifyContent: { xs: "center", md: "flex-start" },
             gap: 1,
+            px: 4,
             marginTop: 2,
             paddingTop: 2,
             borderTop: "1px solid",

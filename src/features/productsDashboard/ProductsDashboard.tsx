@@ -3,10 +3,11 @@ import Navbar from "../../common/Navbar";
 import ProductInfoCard from "./ProductInfoCard";
 import { ConnectedProps, connect, useDispatch } from "react-redux";
 import { RootState } from "../../app/store";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { fetchProducts } from "./productsSlice";
 import ProductSalesGraph from "./ProductSalesGraph";
 import ProductSalesTable from "./ProductSalesTable";
+import { DisplayType } from "./const";
 
 const ProductsDashboard = (props: PropsFromRedux) => {
   const dispatch = useDispatch();
@@ -14,8 +15,11 @@ const ProductsDashboard = (props: PropsFromRedux) => {
     if (props.products.length === 0) {
       dispatch(props.fetchProducts());
     }
-  }, [dispatch]);
+  }, []);
   const selectedProduct = props.products.at(0);
+
+  const [selectedDisplayType, setSelectedDisplayType] =
+    useState<DisplayType>("retailSales");
 
   return (
     <Box sx={{ height: "100%" }}>
@@ -66,8 +70,15 @@ const ProductsDashboard = (props: PropsFromRedux) => {
               gap: { xs: 5, md: "none" },
             }}
           >
-            <ProductSalesGraph product={selectedProduct} />
-            <ProductSalesTable product={selectedProduct} />
+            <ProductSalesGraph
+              product={selectedProduct}
+              displayType={selectedDisplayType}
+              setDisplayType={setSelectedDisplayType}
+            />
+            <ProductSalesTable
+              product={selectedProduct}
+              displayType={selectedDisplayType}
+            />
           </Box>
         </Grid>
       </Grid>

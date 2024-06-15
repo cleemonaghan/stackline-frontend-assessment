@@ -2,13 +2,15 @@ import { DisplayType } from "./const";
 
 export const getDisplayTypeLabel = (type: DisplayType) => {
   switch (type) {
-    case DisplayType.retailSales:
+    case "retailSales":
       return "Retail Sales";
-    case DisplayType.wholesaleSales:
+    case "wholesaleSales":
       return "Wholesale Sales";
-    case DisplayType.unitsSold:
+    case "unitsSold":
       return "Units Sold";
-    case DisplayType.retailerMargin:
+    case "retailerMargin":
       return "Retailer Margin";
+    default:
+      throw new Error("Unexpected display label type: " + type);
   }
 };

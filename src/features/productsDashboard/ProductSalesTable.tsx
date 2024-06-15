@@ -1,6 +1,7 @@
 import { Card, Skeleton } from "@mui/material";
 import { Product } from "./productsSlice";
 import { DataGrid, GridColDef } from "@mui/x-data-grid";
+import { DisplayType } from "./const";
 
 const columns: GridColDef[] = [
   {
@@ -30,7 +31,13 @@ const columns: GridColDef[] = [
   },
 ];
 
-const ProductSalesGraph = ({ product }: { product?: Product }) => {
+const ProductSalesGraph = ({
+  product,
+  displayType,
+}: {
+  product?: Product;
+  displayType: DisplayType;
+}) => {
   if (!product) {
     return <Skeleton variant="rectangular" height={500} width="100%" />;
   }
@@ -41,7 +48,22 @@ const ProductSalesGraph = ({ product }: { product?: Product }) => {
   }));
 
   return (
-    <Card>
+    <Card style={{ height: 632, width: "100%" }}>
+      {/* Mobile Table */}
+      <DataGrid
+        rows={rows}
+        columns={columns.filter(
+          (col) => col.field === "weekEnding" || col.field === displayType
+        )}
+        initialState={{
+          pagination: {
+            paginationModel: { page: 0, pageSize: 10 },
+          },
+        }}
+        pageSizeOptions={[5, 10, 25, 50, 100]}
+        sx={{ display: { xs: "flex", md: "none" } }}
+      />
+      {/* Mobile Table */}
       <DataGrid
         rows={rows}
         columns={columns}
@@ -51,6 +73,7 @@ const ProductSalesGraph = ({ product }: { product?: Product }) => {
           },
         }}
         pageSizeOptions={[5, 10, 25, 50, 100]}
+        sx={{ display: { xs: "none", md: "flex" } }}
       />
     </Card>
   );

@@ -1,6 +1,5 @@
-export enum DisplayType {
-  "retailSales",
-  "wholesaleSales",
-  "unitsSold",
-  "retailerMargin",
-}
+export type DisplayType =
+  | "retailSales"
+  | "wholesaleSales"
+  | "unitsSold"
+  | "retailerMargin";
